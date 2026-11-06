@@ -1,10 +1,14 @@
+import base64
 import logging
 import re
+import sys
 from datetime import datetime
 from pathlib import Path
 
 import pytest
+import pytest_html
 from selenium import webdriver #Importamos la librería que permite controlar el navegador
+from selenium.webdriver.chrome.options import Options
 
 
 logger = logging.getLogger(__name__)
@@ -13,12 +17,23 @@ logger = logging.getLogger(__name__)
 RAIZ_PROYECTO = Path(__file__).resolve().parents[1]
 CARPETA_CAPTURAS = RAIZ_PROYECTO / "reports" / "capturas"
 
-
+# La fixture navegador prepara Chrome antes de cada test y lo cierra al terminar, incluso si el test falla.
 @pytest.fixture
+# request es un objeto que proporciona Pytest con información del test que está usando la fixture.
 def navegador(request):
     logger.info("INICIO: %s", request.node.name)
 
-    driver = webdriver.Chrome()
+    # En Linux/CI se ejecuta sin interfaz gráfica; en Windows se conserva Chrome normal.
+    opciones = Options()
+    if sys.platform.startswith("linux"):
+        opciones.add_argument("--headless=new")
+        opciones.add_argument("--no-sandbox")
+        opciones.add_argument("--disable-dev-shm-usage")
+
+    # Abre una sesión de Chrome y guarda en driver el objeto que permite controlarla:
+    # abrir páginas, buscar elementos, escribir y hacer clic.
+    driver = webdriver.Chrome(options=opciones)
+    # en la clase se definió de la siguiente manera...
     #  navegador = webdriver.Chrome(
     #     service=Service(ChromeDriverManager().install())
     # )
@@ -36,11 +51,12 @@ def navegador(request):
         logger.info("Cerrando Chrome")
         driver.quit()
 
-
-@pytest.hookimpl(wrapper=True)
+# pytest_runtest_makereport permite conocer el resultado de cada etapa de un test. 
+# En nuestro proyecto lo usamos para registrar los resultados y tomar una captura cuando ocurre un fallo.
+@pytest.hookimpl(hookwrapper=True)
 def pytest_runtest_makereport(item, call):
-    # Obtener el resultado de la etapa que acaba de finalizar.
-    reporte = yield
+    resultado = yield
+    reporte = resultado.get_result()
 
     if reporte.when == "call":
         logger.info(
@@ -75,6 +91,17 @@ def pytest_runtest_makereport(item, call):
 
                 if guardada:
                     logger.info("Captura guardada: %s", archivo)
+                    extras = getattr(reporte, "extras", [])
+                    imagen_codificada = base64.b64encode(
+                        driver.get_screenshot_as_png()
+                    ).decode("ascii")
+                    extras.append(
+                        pytest_html.extras.png(
+                            imagen_codificada,
+                            name="Captura de pantalla",
+                        )
+                    )
+                    reporte.extras = extras
                 else:
                     logger.error("Selenium no pudo guardar la captura")
 
@@ -82,4 +109,3 @@ def pytest_runtest_makereport(item, call):
                 # Un error de captura no debe ocultar el fallo original.
                 logger.exception("No se pudo generar la captura")
 
-    return reporte

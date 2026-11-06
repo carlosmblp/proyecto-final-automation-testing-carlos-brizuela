@@ -1,0 +1,7 @@
+{
+  "nuevo_post": {
+    "title": "Prueba de automatización QA",
+    "body": "Post de prueba enviado con la biblioteca Requests.",
+    "userId": 1
+  }
+}
