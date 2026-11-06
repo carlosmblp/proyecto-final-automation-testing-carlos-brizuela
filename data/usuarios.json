@@ -1,0 +1,25 @@
+{
+  "usuario_valido": {
+    "usuario": "standard_user",
+    "contrasena": "secret_sauce"
+  },
+  "casos_login_invalidos": [
+    {
+      "id": "usuario_bloqueado",
+      "usuario": "locked_out_user",
+      "contrasena": "secret_sauce",
+      "mensaje_esperado": "Epic sadface: Sorry, this user has been locked out."
+    },
+    {
+      "id": "credenciales_incorrectas",
+      "usuario": "usuario_inexistente",
+      "contrasena": "clave_incorrecta",
+      "mensaje_esperado": "Epic sadface: Username and password do not match any user in this service"
+    }
+  ],
+  "datos_checkout": {
+    "nombre": "Carlos",
+    "apellido": "Brizuela",
+    "codigo_postal": "1900"
+  }
+}

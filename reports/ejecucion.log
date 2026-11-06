@@ -1,12 +1,32 @@
-2026-10-09 11:13:17 | INFO | conftest | INICIO: test_login_exitoso
-2026-10-09 11:13:18 | INFO | conftest | Chrome abierto
-2026-10-09 11:13:19 | INFO | conftest | RESULTADO: test_login_exitoso | PASSED
-2026-10-09 11:13:19 | INFO | conftest | Cerrando Chrome
-2026-10-09 11:13:21 | INFO | conftest | INICIO: test_catalogo_productos
-2026-10-09 11:13:22 | INFO | conftest | Chrome abierto
-2026-10-09 11:13:23 | INFO | conftest | RESULTADO: test_catalogo_productos | PASSED
-2026-10-09 11:13:23 | INFO | conftest | Cerrando Chrome
-2026-10-09 11:13:25 | INFO | conftest | INICIO: test_agregar_producto_al_carrito
-2026-10-09 11:13:26 | INFO | conftest | Chrome abierto
-2026-10-09 11:13:27 | INFO | conftest | RESULTADO: test_agregar_producto_al_carrito | PASSED
-2026-10-09 11:13:27 | INFO | conftest | Cerrando Chrome
+2026-11-06 11:38:45 | INFO | api.test_posts_api | GET https://jsonplaceholder.typicode.com/posts/1
+2026-11-06 11:38:46 | INFO | conftest | RESULTADO: test_obtener_post_existente | PASSED
+2026-11-06 11:38:46 | INFO | api.test_posts_api | POST https://jsonplaceholder.typicode.com/posts
+2026-11-06 11:38:46 | INFO | conftest | RESULTADO: test_crear_post | PASSED
+2026-11-06 11:38:46 | INFO | api.test_posts_api | DELETE https://jsonplaceholder.typicode.com/posts/1
+2026-11-06 11:38:46 | INFO | conftest | RESULTADO: test_eliminar_post | PASSED
+2026-11-06 11:38:46 | INFO | api.test_posts_api | GET https://httpbin.org/status/404 para validar una respuesta de error
+2026-11-06 11:38:47 | INFO | conftest | RESULTADO: test_endpoint_de_error_devuelve_404 | PASSED
+2026-11-06 11:38:47 | INFO | conftest | INICIO: test_login_exitoso
+2026-11-06 11:38:48 | INFO | conftest | Chrome abierto
+2026-11-06 11:38:49 | INFO | conftest | RESULTADO: test_login_exitoso | PASSED
+2026-11-06 11:38:49 | INFO | conftest | Cerrando Chrome
+2026-11-06 11:38:51 | INFO | conftest | INICIO: test_login_rechaza_credenciales_invalidas[usuario_bloqueado]
+2026-11-06 11:38:52 | INFO | conftest | Chrome abierto
+2026-11-06 11:38:53 | INFO | conftest | RESULTADO: test_login_rechaza_credenciales_invalidas[usuario_bloqueado] | PASSED
+2026-11-06 11:38:53 | INFO | conftest | Cerrando Chrome
+2026-11-06 11:38:55 | INFO | conftest | INICIO: test_login_rechaza_credenciales_invalidas[credenciales_incorrectas]
+2026-11-06 11:38:57 | INFO | conftest | Chrome abierto
+2026-11-06 11:38:57 | INFO | conftest | RESULTADO: test_login_rechaza_credenciales_invalidas[credenciales_incorrectas] | PASSED
+2026-11-06 11:38:57 | INFO | conftest | Cerrando Chrome
+2026-11-06 11:39:00 | INFO | conftest | INICIO: test_catalogo_productos
+2026-11-06 11:39:01 | INFO | conftest | Chrome abierto
+2026-11-06 11:39:02 | INFO | conftest | RESULTADO: test_catalogo_productos | PASSED
+2026-11-06 11:39:02 | INFO | conftest | Cerrando Chrome
+2026-11-06 11:39:04 | INFO | conftest | INICIO: test_agregar_producto_al_carrito
+2026-11-06 11:39:05 | INFO | conftest | Chrome abierto
+2026-11-06 11:39:07 | INFO | conftest | RESULTADO: test_agregar_producto_al_carrito | PASSED
+2026-11-06 11:39:07 | INFO | conftest | Cerrando Chrome
+2026-11-06 11:39:09 | INFO | conftest | INICIO: test_compra_completa_checkout
+2026-11-06 11:39:11 | INFO | conftest | Chrome abierto
+2026-11-06 11:39:13 | INFO | conftest | RESULTADO: test_compra_completa_checkout | PASSED
+2026-11-06 11:39:13 | INFO | conftest | Cerrando Chrome
